@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple Calculator (with JIT & Matrix)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="calculator" role="application" aria-label="Simple calculator">
+    <form class="display" onsubmit="return false;">
+      <input id="screen" type="text" inputmode="numeric" aria-label="Calculator screen" readonly />
+    </form>
+
+    <div class="toolbar">
+      <label class="toolbar-item"><input id="jitToggle" type="checkbox" /> Enable JIT</label>
+      <button id="clearJit" class="toolbar-item">Clear JIT Cache</button>
+      <div class="toolbar-item cache-info">Cache size: <span id="jitCacheSize">0</span></div>
+    </div>
+
+    <div class="keys">
+      <button class="btn func" data-action="clear">C</button>
+      <button class="btn func" data-action="backspace">←</button>
+      <button class="btn func" data-value="(">(</button>
+      <button class="btn func" data-value=")">)</button>
+
+      <button class="btn" data-value="7">7</button>
+      <button class="btn" data-value="8">8</button>
+      <button class="btn" data-value="9">9</button>
+      <button class="btn op" data-value="/">÷</button>
+
+      <button class="btn" data-value="4">4</button>
+      <button class="btn" data-value="5">5</button>
+      <button class="btn" data-value="6">6</button>
+      <button class="btn op" data-value="*">×</button>
+
+      <button class="btn" data-value="1">1</button>
+      <button class="btn" data-value="2">2</button>
+      <button class="btn" data-value="3">3</button>
+      <button class="btn op" data-value="-">−</button>
+
+      <button class="btn" data-value="0" style="grid-column: span 2">0</button>
+      <button class="btn" data-value=".">.</button>
+      <button class="btn op" data-value="+">+</button>
+
+      <button class="btn equals" data-action="calculate" style="grid-column: span 4">=</button>
+    </div>
+
+    <section class="matrix-panel" aria-label="Matrix math">
+      <h3>Matrix Math</h3>
+
+      <div class="matrix-controls">
+        <label>Size:
+          <select id="matrixSize" aria-label="Matrix size">
+            <option value="2">2 × 2</option>
+            <option value="3">3 × 3</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="matrix-row">
+        <div class="matrix-block">
+          <div class="matrix-title">Matrix A</div>
+          <div id="matrixA" class="matrix-grid" data-prefix="A"></div>
+        </div>
+
+        <div class="matrix-block">
+          <div class="matrix-title">Matrix B</div>
+          <div id="matrixB" class="matrix-grid" data-prefix="B"></div>
+        </div>
+      </div>
+
+      <div class="matrix-actions">
+        <button id="matAdd" class="mat-btn">A + B</button>
+        <button id="matMul" class="mat-btn">A × B</button>
+        <button id="matTA" class="mat-btn">T(A)</button>
+        <button id="matTB" class="mat-btn">T(B)</button>
+        <button id="matDetA" class="mat-btn">det(A)</button>
+        <button id="matDetB" class="mat-btn">det(B)</button>
+        <button id="matInvA" class="mat-btn">A⁻¹</button>
+        <button id="matInvB" class="mat-btn">B⁻¹</button>
+        <button id="matClear" class="mat-btn">Clear</button>
+      </div>
+
+      <div id="matrixResult" class="matrix-result" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
